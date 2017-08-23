@@ -8,15 +8,19 @@ class Snake{
 
 public:
     Snake();
+    Snake(unsigned int x, unsigned int y);
     Snake(const Snake &rhs);
     Snake &operator=(const Snake &rhs);
     ~Snake();
 
-    const std::vector<int> &getPos() const;
-    void setPos(const std::vector<int> &pos);
+    unsigned int getX() const;
+    unsigned int getY() const;
+    void setX(unsigned int x);
+    void setY(unsigned int y);
 
 private:
-    std::vector<int>    _pos;
+    unsigned int    _x;
+    unsigned int    _y;
     //bool                _head;
     //int                 _direction;
     //std::vector<int>    _lastP;

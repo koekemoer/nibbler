@@ -65,7 +65,7 @@ int main()
 
 	Texture t1,t2;
 	t1.loadFromFile("images/white.png");
-	t2.loadFromFile("images/red.png");
+	t2.loadFromFile("images/red.png");mnn
 
 	Sprite sprite1(t1);
 	Sprite sprite2(t2);

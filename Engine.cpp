@@ -1,6 +1,11 @@
 #include "Engine.hpp"
 
-Engine::Engine()
+Engine::Engine() : 
+    _winWidth = 0,
+    _winHeight = 0;
+    _score = 0;
+    handle = NULL;
+                
 {
 
 }
@@ -46,4 +51,21 @@ int     Engine::setWinWidth(int width)
 int     Engine::setWinHeight(int height)
 {
     this->_winHeight = height;
+}
+
+void    Engine::loadLib(int gui)
+{
+    switch (gui)
+    {
+        case 1:
+        {
+            std::cout << "Starting SFML" << std::endl;
+            handle = dlopen(SFMLLIB, RTLD_LAZY);
+            break;
+        }
+        default:
+        {
+            std::cout << "Invalid input" << std::endl;
+        }
+    }
 }

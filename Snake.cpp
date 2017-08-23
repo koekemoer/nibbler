@@ -5,6 +5,12 @@ Snake::Snake()
 
 }
 
+Snake::Snake(unsigned int x, unsigned int y)
+{
+    this->_x = x;
+    this->_y = y;
+}
+
 Snake::~Snake()
 {
 
@@ -17,15 +23,26 @@ Snake::Snake(const Snake &rhs)
 
 Snake &Snake::operator=(const Snake &rhs)
 {
-    this->_pos = rhs.getPos();
+    this->_x = rhs.getX();
+    this->_y = rhs.getY();
 }
 
-const std::vector<int> &Snake::getPos() const
+unsigned int Snake::getX() const
 {
-    return _pos;
+    return _x;
 }
 
-void    Snake::setPos(const std::vector<int> &pos)
+unsigned int Snake::getY() const
 {
-    this->_pos = pos;
+    return _y;
+}
+
+void    Snake::setX(unsigned int x)
+{
+    this->_x = x;
+}
+
+void    Snake::setY(unsigned int y)
+{
+    this->_y = y;
 }

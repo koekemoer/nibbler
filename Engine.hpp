@@ -3,16 +3,23 @@
 
 #include <iostream>
 #include <list>
+#include "Snake.hpp"
+#include <time.h>
+
+#define SMFLLIB "../dynamicLibraries/SFML/SFMLlib.so"
 
 class Engine
 {
 private:
-    int                 _winWidth;
-    int                 _winHeight;
+    unsigned int        _winWidth;
+    unsigned int        _winHeight;
+    std::vector<Snake*> snake;
+    unsigned int        _score;
+    void                *handle;
     
 public:
     Engine();
-    Engine(unsigned int x, unsigned int y);
+    Engine(unsigned int w, unsigned int h);
     Engine(const Engine &rhs);
     Engine &operator=(const Engine &rhs);
     ~Engine();
@@ -21,6 +28,9 @@ public:
     int     getWinHeight() const;
     void    setWinWidth(int width);
     void    setWinHeight(int height);
+    
+    void    init();
+    void    loadLib(int gui);
     
 };
 
