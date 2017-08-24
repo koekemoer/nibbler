@@ -60,7 +60,13 @@ void    Engine::loadLib(int gui)
         case 1:
         {
             std::cout << "Starting SFML" << std::endl;
-            handle = dlopen(SFMLLIB, RTLD_LAZY);
+            this->handle = dlopen(SFMLLIB, RTLD_LAZY);
+            create_t* create_lib = (create_t *) dlsym(this->handle, "create");
+            const char* dlsym_error = dlerror();
+            if (dlsym_error)
+                throw (dlsym_error);
+
+            this->lib = create_lib;
             break;
         }
         default:
@@ -68,4 +74,9 @@ void    Engine::loadLib(int gui)
             std::cout << "Invalid input" << std::endl;
         }
     }
+}
+
+void    Engine::init()
+{
+    loadLib(1);
 }

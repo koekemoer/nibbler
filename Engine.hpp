@@ -5,6 +5,7 @@
 #include <list>
 #include "Snake.hpp"
 #include <time.h>
+#include "Basegfx.hpp"
 
 #define SMFLLIB "../dynamicLibraries/SFML/SFMLlib.so"
 
@@ -16,6 +17,7 @@ private:
     std::vector<Snake*> snake;
     unsigned int        _score;
     void                *handle;
+    Basegfx             *lib;
     
 public:
     Engine();

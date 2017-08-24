@@ -25,4 +25,6 @@ private:
     //int                 _direction;
     //std::vector<int>    _lastP;
 
-}
+};
+
+#endif

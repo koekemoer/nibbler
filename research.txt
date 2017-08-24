@@ -22,3 +22,13 @@ for libraries. We could also add this library to the other paths that GNU Linker
 Linux dynamic loader use and then we wouldn't need to adjust LD_LIBRARY_PATH. At 
 the end we run our test program and establish that 100/5 really equals 20 and that 
 means that everything is in order.
+
+On Mac OS X, compile with:
+
+g++ -dynamiclib -flat_namespace myclass.cc -o myclass.so
+g++ class_user.cc -o class_user
+
+On Linux, compile with:
+
+g++ -fPIC -shared myclass.cc -o myclass.so
+g++ class_user.cc -ldl -o class_user

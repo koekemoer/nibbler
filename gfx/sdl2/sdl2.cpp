@@ -5,6 +5,16 @@
 
 }*/
 
+extern "C" Basegfx *create()
+{
+    return (new sdl2);
+}
+
+extern "C" void destroy(Basegfx *obj)
+{
+    delete obj;
+}
+
 sdl2::sdl2()
 {
     this->_maxW = 0;
@@ -20,7 +30,7 @@ sdl2::sdl2(unsigned int w, unsigned int h)
     this->_maxH = h;
 }
 
-sdl2::sdl2(const sdl2 &rhs)
+sdl2::sdl2(sdl2 const &rhs)
 {
     *this = rhs;
 }
@@ -36,30 +46,32 @@ sdl2::~sdl2()
     SDL_Quit();
 }
 
-sdl2 &sdl2::operator=(const sdl2 &rhs)
+sdl2 &sdl2::operator=(sdl2 const &rhs)
 {
     this->_maxW = rhs.getW();
     this->_maxH = rhs.getH();
+
+    return (*this);
 }
 
-int sdl2::getW()
+int sdl2::getW() const
 {
     return this->_maxW;
 }
 
-int sdl2::getH()
+int sdl2::getH() const
 {
     return this->_maxH;
 }
 
-void    sdl2::init(unsigned int w, unsigned int h)
+void    sdl2::init(unsigned int &maxW, unsigned int &maxH)
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
     {
         std::cout << "SDL init() failed" << std::endl;
         return;
     }
-    this->window = SDL_CreateWindow("Nibbler", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, (_maxX) * 20.0f, (_maxY) * 20.0f, SDL_WINDOW_SHOWN);
+    this->_window = SDL_CreateWindow("Nibbler", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, (maxW) * 20.0f, (maxH) * 20.0f, SDL_WINDOW_SHOWN);
     if (this->_window == NULL)
     {
         std::cout << "SDL CreateWindow() failed" << std::endl;

@@ -2,33 +2,33 @@
 # define SDL2_HPP
 
 #include <SDL2/SDL.h>
-#include <GL/gl.h>
+#include <OpenGL/gl.h>
 #include <iostream>
 #include <sstream>
-#include "Basegfx.hpp"
+#include "../../Basegfx.hpp"
 
 class sdl2 : public Basegfx
 {
 private:
-    int     maxW;
-    int     maxH
-    int     rand;
+    int     _maxW;
+    int     _maxH;
+    //int     _rand;
 
     SDL_Window      *_window;
     SDL_Renderer    *_renderer;
-    SDL_Event       _event; // key input
+    //SDL_Event       _event; // key input
 
 public:
     sdl2();
     sdl2(unsigned int w, unsigned h);
-    sdl2(const sdl2 &rhs);
+    sdl2(sdl2 const &rhs);
     ~sdl2();
-    sdl2 &operator=(const sdl2 &rhs);
+    sdl2 &operator=(sdl2 const &rhs);
 
-    void init(unsigned int w, unsigned int h);
+    void init(unsigned int &maxW, unsigned int &maxH);
 
-    int getW();
-    int getH();
+    int getW() const;
+    int getH() const;
     
 };
 

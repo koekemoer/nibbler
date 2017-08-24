@@ -4,12 +4,13 @@ CC = clang++
 
 CFLAGS = -Wall -Werror -Wextra -std=c++11
 
-SRC = src/*.cpp
+SRC = Snake.cpp Engine.cpp main.cpp
 
 OBJ = $(SRC:*.cpp=%.o)
 
 $(NAME):
-	@$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+	make -C ./gfx/sdl2/
+	@$(CC) $(CFLAGS) -Qunused-arguments -o $(NAME) $(OBJ) -ldl
 
 all: $(NAME)
 
