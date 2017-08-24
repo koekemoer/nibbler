@@ -3,11 +3,12 @@
 
 #include <iostream>
 #include <list>
-#include "Snake.hpp"
 #include <time.h>
-#include "Basegfx.hpp"
 
-#define SMFLLIB "../dynamicLibraries/SFML/SFMLlib.so"
+#include "Basegfx.hpp"
+#include "Snake.hpp"
+
+//#define SMFLLIB "../dynamicLibraries/SFML/SFMLlib.so"
 
 class Engine
 {

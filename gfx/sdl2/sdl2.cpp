@@ -7,7 +7,7 @@
 
 extern "C" Basegfx *create()
 {
-    return (new sdl2);
+    return new sdl2;
 }
 
 extern "C" void destroy(Basegfx *obj)
