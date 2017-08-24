@@ -1,0 +1,24 @@
+Here's the example of creating dynamic library, linking program with that library and testing is everything working as it should. Code used in this examples is given in the first part 
+of my "C/C++ library programming on Linux" article series.
+
+1 gcc -Wall -fPIC -c ctest1.c ctest2.c
+2 gcc -shared -Wl,-soname,libctest.so.1 -o libctest.so.1.0 ctest1.o ctest2.o
+3 ln -sf libctest.so.1.0 libctest.so
+4 ln -sf libctest.so.1.0 libctest.so.1
+5 gcc -Wall -L. cprog.c -lctest -o cprog
+6 export LD_LIBRARY_PATH=.
+7 ./cprog
+
+In the first line of code we create library object code, this is nothing special 
+cause we also did that with our static library. Second line creates dynamic library 
+stored in libctest.so.1.0 file with "libctest.so.1" soname. For an explanation of 
+soname please go to the first part of this article series. After we create dynamic 
+library we must create symlinks used to point GNU Linker and Linux dynamic loader to 
+the proper versions of our library. Now when we have our library, we can compile our 
+program that uses this library and link this program to the library we made earlier. 
+We do this with the fifth line of the upper code. At the end we must set the LD_LIBRARY_PATH 
+to the current directory because Linux dynamic loader uses this variable to search 
+for libraries. We could also add this library to the other paths that GNU Linker and 
+Linux dynamic loader use and then we wouldn't need to adjust LD_LIBRARY_PATH. At 
+the end we run our test program and establish that 100/5 really equals 20 and that 
+means that everything is in order.
