@@ -6,25 +6,14 @@
 
 class Basegfx
 {
-private:
-    unsigned int     _screenW;
-    unsigned int     _screenH;
-    Engine  *engine;
 
 public:
-    Basegfx(engine *ref);
-    virtual ~Basegfx();
+    Basegfx() {};
+    virtual ~Basegfx() {};
 
-    void    draw();
-    void    update();
+    virtual void init(unsigned int &maxW, unsigned int &maxH);
+    virtual void render(char **map)
+    virtual int input(int &dir, int &lib) = 0;
+};
 
-    unsigned int    getScreenW();
-    unsigned int    getScreenH();
-    void            setScreenW(unsigned int w);
-    void            setScreenH(unsigned int h);
-    Engine          *getEngine() const;
-    void            setEngine(Engine *engine);
-    void            checkInput();
-    void            exit();
-
-}
+#endif
