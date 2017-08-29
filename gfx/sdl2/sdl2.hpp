@@ -1,8 +1,14 @@
 #ifndef SDL2_HPP
 # define SDL2_HPP
 
-#include <SDL2/SDL.h>
-#include <OpenGL/gl.h>
+#ifdef APPLE
+    #include <SDL2/SDL.h>
+    #include <OpenGL/gl.h>
+#else
+    #include <SDL2/SDL.h>
+    #include <GL/gl.h>
+#endif
+
 #include <iostream>
 #include <sstream>
 #include "../../Basegfx.hpp"

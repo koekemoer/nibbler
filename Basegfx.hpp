@@ -2,6 +2,7 @@
 # define BASEGFX_HPP
 
 #include <iostream>
+#include <dlfcn.h>
 //#include "Engine.hpp"
 
 class Basegfx

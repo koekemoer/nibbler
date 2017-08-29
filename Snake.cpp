@@ -25,6 +25,8 @@ Snake &Snake::operator=(const Snake &rhs)
 {
     this->_x = rhs.getX();
     this->_y = rhs.getY();
+
+    return (*this);
 }
 
 unsigned int Snake::getX() const

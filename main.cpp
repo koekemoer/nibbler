@@ -1,5 +1,6 @@
 #include <dlfcn.h>
 #include <iostream>
+#include <string>
 #include "Engine.hpp"
 
 
@@ -14,7 +15,8 @@ int     main(int ac, char **av)
 
     Engine  game;
 
-    game.init(itoa(av[1]), itoa(av[2]));
+    game = Engine(atoi(av[1]), atoi(av[2]));
+    game.init();
 
     return (0);
 

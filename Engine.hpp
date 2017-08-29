@@ -4,6 +4,7 @@
 #include <iostream>
 #include <list>
 #include <time.h>
+#include <dlfcn.h>
 
 #include "Basegfx.hpp"
 #include "Snake.hpp"
@@ -16,7 +17,7 @@ private:
     unsigned int        _winWidth;
     unsigned int        _winHeight;
     std::vector<Snake*> snake;
-    unsigned int        _score;
+    //unsigned int        _score;
     void                *handle;
     Basegfx             *lib;
     
