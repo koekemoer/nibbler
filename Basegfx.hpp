@@ -12,7 +12,7 @@ public:
     Basegfx() {};
     virtual ~Basegfx() {};
 
-    virtual void init(unsigned int &maxW, unsigned int &maxH);
+    virtual void init(unsigned int &maxW, unsigned int &maxH) = 0;
     //virtual void render(char **map);
     //virtual int input(int &dir, int &lib) = 0;
 };

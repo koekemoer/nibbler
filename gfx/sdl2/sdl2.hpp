@@ -1,16 +1,18 @@
 #ifndef SDL2_HPP
 # define SDL2_HPP
 
-#ifdef APPLE
+//#ifdef __APPLE__
     #include <SDL2/SDL.h>
+    //#include <SDL2/SDL_image.h>
     #include <OpenGL/gl.h>
-#else
-    #include <SDL2/SDL.h>
-    #include <GL/gl.h>
-#endif
+//#else
+    //#include <SDL2/SDL.h>
+    //#include <GL/gl.h>
+//#endif
 
 #include <iostream>
 #include <sstream>
+#include <unistd.h>
 #include "../../Basegfx.hpp"
 
 class sdl2 : public Basegfx

@@ -6,12 +6,16 @@ CFLAGS = -Wall -Werror -Wextra -std=c++11
 
 SRC = Snake.cpp Engine.cpp main.cpp Basegfx.cpp
 
+LINUX_FLAGS = -lSDL2 -lSDL2_image -lSDL_image -lSDL2main -lGL
+
+MAC_FLAGS = -framework OpenGL -framework SDL2 
+#-framework SDL2_image -framework SDL_image
+MAC2_FLAGS = `sdl-config --cflags --libs`
 OBJ = $(SRC:*.cpp=%.o)
 
 $(NAME):
-	#make -C ./gfx/sdl2/
-	$(CC) $(CFLAGS) -shared -fPIC -lSDL2 -lGL -I gfx/sdl2/ gfx/sdl2/sdl2.cpp -o lib1.so
-	$(CC) $(CFLAGS)  $(SRC) -I gfx/sdl2/ -lSDL2 -lGL -L . -l1 -o $(NAME)
+	$(CC) $(CFLAGS) -shared -fPIC $(MAC_FLAGS) -I gfx/sdl2/ gfx/sdl2/sdl2.cpp -o lib1.so
+	$(CC) $(CFLAGS)  $(SRC) -I gfx/sdl2/ $(MAC_FLAGS) -L . -l1 -o $(NAME)
 
 all: $(NAME)
 
