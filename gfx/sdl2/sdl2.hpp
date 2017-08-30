@@ -2,12 +2,12 @@
 # define SDL2_HPP
 
 //#ifdef __APPLE__
-    #include <SDL2/SDL.h>
+//    #include <SDL2/SDL.h>
     //#include <SDL2/SDL_image.h>
-    #include <OpenGL/gl.h>
+//    #include <OpenGL/gl.h>
 //#else
-    //#include <SDL2/SDL.h>
-    //#include <GL/gl.h>
+    #include <SDL2/SDL.h>
+    #include <GL/gl.h>
 //#endif
 
 #include <iostream>
@@ -20,11 +20,9 @@ class sdl2 : public Basegfx
 private:
     int     _maxW;
     int     _maxH;
-    //int     _rand;
 
     SDL_Window      *_window;
     SDL_Renderer    *_renderer;
-    //SDL_Event       _event; // key input
 
 public:
     sdl2();

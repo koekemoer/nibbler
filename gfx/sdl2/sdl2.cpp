@@ -72,7 +72,7 @@ void    sdl2::init(unsigned int &maxW, unsigned int &maxH)
         return;
     }
     this->_window = SDL_CreateWindow("Nibbler", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, (maxW + 2) * 20.0f, (maxH + 2) * 20.0f, SDL_WINDOW_SHOWN);
-    usleep(5000);
+    //usleep(5000);
     if (this->_window == NULL)
     {
         std::cout << "SDL CreateWindow() failed" << std::endl;

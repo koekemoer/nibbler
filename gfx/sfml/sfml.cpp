@@ -1,24 +1,57 @@
 #include "sfml.hpp"
 
-SFML::SFML()
+extern "C" Basegfx *create()
 {
-    this->_w = 0;
-    this->_h = 0;
-    this->_window = nullptr;
+    return new sfml;
 }
 
-SFML::SFML(unsigned int w, unsigned int h)
+extern "C" void destroy(Basegfx *obj)
 {
-    this->_w = w;
-    this->_h = h;
+    delete obj;
 }
 
-SFML::~SFML()
+sfml::sfml()
+{
+    this->_maxW = 0;
+    this->_maxH = 0;
+    this->_window = NULL;
+}
+
+sfml::sfml(unsigned int w, unsigned int h)
+{
+    this->_maxW = w;
+    this->_maxH = h;
+}
+
+sfml::sfml(sfml const &rhs)
+{
+    *this = rhs;
+}
+
+sfml::~sfml()
 {
 
 }
 
-void    SFML::init(unsigned int &w, unsigned int &h)
+sfml &sfml::operator=(sfml const &rhs)
+{
+    this->_maxW = rhs.getW();
+    this->_maxH = rhs.getH();
+
+    return (*this);
+}
+
+int sfml::getW() const
+{
+    return this->_maxW;
+}
+
+int sfml::getH() const
+{
+    return this->_maxH;
+}
+
+void    sfml::init(unsigned int &w, unsigned int &h)
 {
     _window = new sf::RenderWindow;
 

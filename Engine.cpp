@@ -59,7 +59,7 @@ void    Engine::loadLib(int gui)
         case 1:
         {
             std::cout << "Starting SDL2" << std::endl;
-            this->handle = dlopen("./lib1.so", RTLD_NOW | RTLD_GLOBAL);
+            this->handle = dlopen("./lib1.so", RTLD_LAZY);
             create_t* create_lib = (create_t *) dlsym(this->handle, "create");
             const char* dlsym_error = dlerror();
             if (dlsym_error)
@@ -67,6 +67,17 @@ void    Engine::loadLib(int gui)
 
             this->lib = create_lib();
             //this->lib
+            break;
+        }
+        case 2:
+        {
+            std::cout << "Starting SFML" << std::endl;
+            this->handle = dlopen("./lib2.so", RTLD_LAZY);
+            create_t* create_lib = (create_t *) dlsym(this->handle, "create");
+            const char* dlsym_error = dlerror();
+            if (dlsym_error)
+                throw (dlsym_error);
+            this->lib = create_lib();
             break;
         }
         default:
@@ -78,5 +89,5 @@ void    Engine::loadLib(int gui)
 
 void    Engine::init()
 {
-    loadLib(1);
+    loadLib(2);
 }
