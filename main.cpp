@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include "Engine.hpp"
+#include <unistd.h>
 
 
 
@@ -17,6 +18,7 @@ int     main(int ac, char **av)
 
     game = Engine(atoi(av[1]), atoi(av[2]));
     game.init();
+    usleep(50000);
 
     return (0);
 

@@ -21,6 +21,7 @@ public:
     sfml &operator=(sfml const &rhs);
 
     void init(unsigned int &maxW, unsigned int &maxH);
+    //void render(char **map);
 
     int getW() const;
     int getH() const;

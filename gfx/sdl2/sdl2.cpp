@@ -85,3 +85,8 @@ void    sdl2::init(unsigned int &maxW, unsigned int &maxH)
         return;
     }
 }
+
+void    sdl2::render(char **map)
+{
+    
+}
