@@ -17,7 +17,7 @@ int     main(int ac, char **av)
     Engine  game;
 
     game = Engine(atoi(av[1]), atoi(av[2]));
-    game.init();
+    game.init(atoi(av[1], atoi(av[2]));
     usleep(50000);
 
     return (0);

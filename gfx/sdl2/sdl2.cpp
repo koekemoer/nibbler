@@ -79,6 +79,8 @@ void    sdl2::init(unsigned int &maxW, unsigned int &maxH)
         return;
     }
     this->_renderer = SDL_CreateRenderer(this->_window, -1, SDL_RENDERER_ACCELERATED);
+    std::cout << this->_maxW << std::endl;
+    std::cout << this->_maxH << std::endl;
     if (this->_renderer == NULL)
     {
         std::cout << "SDL CreateRenderer() failed" << std::endl;
@@ -86,7 +88,7 @@ void    sdl2::init(unsigned int &maxW, unsigned int &maxH)
     }
 }
 
-void    sdl2::render(char **map)
+/*void    sdl2::render(char **map)
 {
     
-}
+}*/

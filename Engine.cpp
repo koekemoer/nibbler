@@ -87,7 +87,9 @@ void    Engine::loadLib(int gui)
     }
 }
 
-void    Engine::init()
+void    Engine::init(int w, int h)
 {
-    loadLib(2);
+    this->_winWidth = w;
+    this->_winHeight = h;
+    loadLib(1);
 }

@@ -1,0 +1,90 @@
+NAME		= bomberman.exe
+
+CC			= clang++
+
+#C_FLAGS		= -W -Wall -Werror -pedantic -g -g3 -std=c++11
+
+#SDL_FLAGS	= -lSDL2 -lm #-lSDL_image -lSDL_textures -lSDL_tff
+SDL2_FLAGS	:= $(shell pkg-config --cflags sdl2) #-lm
+SDL2_LIBS	:= $(shell pkg-config --libs sdl2)
+#GL_FLAGS	= -lGL
+
+GL_FLAGS 	:= $(shell pkg-config --cflags gl)
+GL_LIBS		:= $(shell pkg-config --libs gl)
+
+MAC_GL_FLAGS = -framework OpenGl
+
+#devil_cflags	:= $(shell pkg-config --cflags IL)
+#devil_libs		:= $(shell pkg-config --libs IL)
+
+FLAGS	:= $(GL_FLAGS) $(SDL2_FLAGS) #$(devil_cflags)
+
+CXXFLAGS := -O0 -g -Wall -Wextra -std=c++11 $(FLAGS)
+
+LIBS		:= $(SDL2_LIBS) $(GL_LIBS) #$(devil_libs)
+
+BDIR		= ../../../../../.brew/lib/
+
+IDIR		= ./inc/
+
+LDIR		= ./lib/
+
+FTDIR		= $(LDIR)libft/
+
+SDIR		= ./src/
+
+ODIR		= ./obj/
+
+SRC			= $(SRC_L)
+
+OBJ			= $(OBJ_L)
+
+SRC_L		= $(SDIR)main.cpp\
+			$(SDIR)run_game.cpp\
+			$(SDIR)run_menu.cpp\
+			$(SDIR)sdl_gl/sdl_gl_init.cpp\
+			$(SDIR)sdl_gl/sdl_keys.cpp\
+			$(SDIR)sdl_gl/sdl_mouse.cpp\
+			$(SDIR)sdl_gl/sdl_readkeys.cpp
+
+INCLUDES	= $(IDIR) 
+
+RM			= rm -f
+
+ifeq ($(OS),Apple)
+    #COMPILE := $(CC) $(SRC) -o $(NAME) -I $(INCLUDES) -L $(FTDIR) -lft $(MAC_GL_FLAGS) $(SDL_FLAGS)
+    #gcc -Wall -o skeleton skeleton.cpp -F /Library/Frameworks -lstdc++ -I /Library/Frameworks/SDL2.framework/Headers -framework SDL2 -framework OpenGL
+    COMPILE := $(CC) $(SRC) -o $(NAME) -F /Library/Frameworks -lstdc++ -I /Library/Frameworks/SDL2.framework/Headers -framework SDL2 -framework OpenGL
+
+else
+    #c++ $(LDFLAGS) -o $@ $^ $(LIBS)
+    COMPILE := $(CC) $(CXXFLAGS) $(SRC) -o $(NAME) -I $(INCLUDES) -L $(LIBS) -lSDL2 -lGL
+    #COMPILE := $(CC) $(C_FLAGS) $(GL_FLAGS) $(SDL_FLAGS) -I $(INCLUDES) $(SRC) -o $(NAME) -L $(FTDIR) -lft 
+endif
+
+$(NAME): 
+	@echo "\033[1;32mCreating library...\033[0m"
+	@make -C $(FTDIR)
+	@echo "\033[1;32mCreating executable\033[0m $(NAME)"
+	@$(COMPILE)
+
+all: $(NAME)
+
+clean:
+	@echo "\033[1;31mCleaning libft OBJ files...\033[0m"
+	@make -C $(FTDIR) clean
+
+fclean: clean
+	@echo "\033[1;31mRemoving executable\033[0m $(NAME)"
+	@make -C $(FTDIR) fclean
+	@$(RM) $(NAME)
+
+re: fclean all
+
+.db: $(NAME)
+	lldb $(NAME)
+
+.PHONY: all re clean fclean
+
+love:
+	@echo ". . . not war"

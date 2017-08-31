@@ -33,7 +33,7 @@ public:
     void    setWinWidth(int width);
     void    setWinHeight(int height);
     
-    void    init();
+    void    init(unsigned int w, unsigned int h);
     void    loadLib(int gui);
     
 };
