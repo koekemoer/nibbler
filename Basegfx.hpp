@@ -13,7 +13,7 @@ public:
     virtual ~Basegfx() {};
 
     virtual void init(unsigned int &maxW, unsigned int &maxH) = 0;
-    //virtual void render(char **map) = 0;
+    virtual void render() = 0;
     //virtual int input(int &dir, int &lib) = 0;
 };
 

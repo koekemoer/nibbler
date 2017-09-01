@@ -5,6 +5,7 @@
 #include <list>
 #include <time.h>
 #include <dlfcn.h>
+#include <unistd.h>
 
 #include "Basegfx.hpp"
 #include "Snake.hpp"
@@ -16,7 +17,7 @@ class Engine
 private:
     unsigned int        _winWidth;
     unsigned int        _winHeight;
-    std::vector<Snake*> snake;
+    //std::vector<Snake*> snake;
     //unsigned int        _score;
     void                *handle;
     Basegfx             *lib;
@@ -35,6 +36,7 @@ public:
     
     void    init(unsigned int w, unsigned int h);
     void    loadLib(int gui);
+    void    gameLoop();
     
 };
 

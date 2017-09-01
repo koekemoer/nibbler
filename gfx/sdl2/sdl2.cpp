@@ -66,12 +66,15 @@ int sdl2::getH() const
 
 void    sdl2::init(unsigned int &maxW, unsigned int &maxH)
 {
+
+    this->_maxW = maxW;
+    this->_maxH = maxH;
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
     {
         std::cout << "SDL init() failed" << std::endl;
         return;
     }
-    this->_window = SDL_CreateWindow("Nibbler", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, (maxW + 2) * 20.0f, (maxH + 2) * 20.0f, SDL_WINDOW_SHOWN);
+    this->_window = SDL_CreateWindow("Nibbler", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, (maxW + 2) * 16.0f, (maxH + 2) * 16.0f, SDL_WINDOW_SHOWN);
     //usleep(5000);
     if (this->_window == NULL)
     {
@@ -86,9 +89,33 @@ void    sdl2::init(unsigned int &maxW, unsigned int &maxH)
         std::cout << "SDL CreateRenderer() failed" << std::endl;
         return;
     }
+
+    SDL_RenderSetLogicalSize(this->_renderer, (this->_maxW + 2) * 16.0f, (this->_maxH + 2) * 16.0f);
+    SDL_SetRenderDrawColor(this->_renderer, 0, 0, 0, 255);
 }
 
-/*void    sdl2::render(char **map)
+void    sdl2::render()
 {
-    
-}*/
+    SDL_SetRenderDrawColor(this->_renderer, 100, 102, 200, 255);
+    SDL_RenderClear(this->_renderer);
+    SDL_Rect rect;
+    //SDL_Rect sco;
+
+    for (int y = 0; y < _maxH; y++)
+    {
+        for (int x = 0; x < _maxW; x++)
+        {
+            SDL_SetRenderDrawColor(this->_renderer, 100, 102, 200, 255);
+
+            rect.x = x * 20.0f;
+            rect.y = y * 20.0f /*-3*/;
+            rect.w = 20.0f;
+            rect.h = 20.0f;
+
+            SDL_RenderFillRect(this->_renderer, &rect);
+
+            SDL_RenderPresent(this->_renderer);
+        }
+    }
+
+}

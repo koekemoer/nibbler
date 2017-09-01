@@ -59,7 +59,7 @@ void    Engine::loadLib(int gui)
         case 1:
         {
             std::cout << "Starting SDL2" << std::endl;
-            this->handle = dlopen("./lib1.so", RTLD_LAZY);
+            this->handle = dlopen("lib1.so", RTLD_LAZY);
             create_t* create_lib = (create_t *) dlsym(this->handle, "create");
             const char* dlsym_error = dlerror();
             if (dlsym_error)
@@ -84,12 +84,23 @@ void    Engine::loadLib(int gui)
         {
             std::cout << "Invalid input" << std::endl;
         }
+        this->lib->init(this->_winWidth, this->_winHeight);
+            //throw ("library initialization Error: \"failed.\"");
     }
 }
 
-void    Engine::init(int w, int h)
+void    Engine::init(unsigned int w, unsigned int h)
 {
     this->_winWidth = w;
     this->_winHeight = h;
     loadLib(1);
+}
+
+void    Engine::gameLoop()
+{
+    while (1)
+    {
+        this->lib->render();
+        usleep(50000);
+    }
 }

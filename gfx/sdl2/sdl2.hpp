@@ -2,12 +2,12 @@
 # define SDL2_HPP
 
 //#ifdef MACH
-    #include <SDL2/SDL.h>
-    //#include <SDL2/SDL_image.h>
-    #include <OpenGL/gl.h>
-//#else
     //#include <SDL2/SDL.h>
-    //#include <GL/gl.h>
+    //#include <SDL2/SDL_image.h>
+    //#include <OpenGL/gl.h>
+//#else
+    #include <SDL2/SDL.h>
+    #include <GL/gl.h>
 //#endif
 
 #include <iostream>
@@ -31,10 +31,11 @@ public:
     ~sdl2();
     sdl2 &operator=(sdl2 const &rhs);
 
-    void init(unsigned int &maxW, unsigned int &maxH);
+    void    init(unsigned int &maxW, unsigned int &maxH);
+    void    render(); 
 
-    int getW() const;
-    int getH() const;
+    int     getW() const;
+    int     getH() const;
     
 };
 
